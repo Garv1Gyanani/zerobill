@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZERO BILL SOLAR • Premium Solar Energy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        
+        .heading {
+            font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.055em;
+            line-height: 1.02;
+        }
+
+        .premium-nav {
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(30px);
+        }
+
+        .section-title {
+            font-size: 3.85rem;
+            line-height: 1.02;
+            font-weight: 700;
+            letter-spacing: -0.06em;
+        }
+
+        .modern-card {
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), 
+                       box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .modern-card:hover {
+            transform: translateY(-18px);
+            box-shadow: 0 45px 100px -25px rgb(16 185 129 / 0.18), 
+                       0 10px 20px -5px rgb(0 0 0 / 0.06);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #10b981, #34d399);
+            transition: width 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(229,231,235,0.6);
+        }
+
+        .hero-bg {
+            background: linear-gradient(rgba(15,23,42,0.68), rgba(15,23,42,0.72)), 
+                        url('https://picsum.photos/id/1018/2000/1400') center/cover no-repeat;
+        }
+
+        .premium-btn {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .premium-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px -12px rgb(16 185 129 / 0.35);
+        }
+
+        .service-icon {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .modern-card:hover .service-icon {
+            transform: scale(1.2) rotate(10deg);
+            background-color: #10b981;
+            color: white;
+        }
+
+        .stat {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+
+        .metric-number {
+            transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+    </style>
+</head>
+<body class="bg-zinc-50 text-zinc-900">
+
+    <!-- ==================== NAV ==================== -->
+    <nav class="premium-nav sticky top-0 z-50 border-b border-zinc-100">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex items-center justify-between h-[78px]">
+                <div class="flex items-center gap-x-4">
+                    <div class="w-12 h-12 bg-emerald-600 rounded-3xl flex items-center justify-center shadow-inner">
+                        <i class="fas fa-solar-panel text-white text-[28px]"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold text-[34px] tracking-[-3.5px]">ZERO BILL</span>
+                        <span class="block text-[9.5px] text-emerald-600 -mt-1.5 tracking-[3.5px] font-medium">SOLAR ENERGY</span>
+                    </div>
+                </div>
+
+                <div class="hidden lg:flex items-center gap-x-9 text-sm font-medium">
+                    <a href="#about" class="nav-link text-zinc-600 hover:text-zinc-900">About</a>
+                    <a href="#process" class="nav-link text-zinc-600 hover:text-zinc-900">Process</a>
+                    <a href="#services" class="nav-link text-zinc-600 hover:text-zinc-900">Services</a>
+                    <a href="#schemes" class="nav-link text-zinc-600 hover:text-zinc-900">Schemes</a>
+                    <a href="#projects" class="nav-link text-zinc-600 hover:text-zinc-900">Projects</a>
+                    <a href="#why" class="nav-link text-zinc-600 hover:text-zinc-900">Why Us</a>
+                </div>
+
+                <div class="flex items-center gap-x-3">
+                    <a href="https://wa.me/919548595485" target="_blank"
+                       class="hidden md:flex items-center gap-x-2.5 px-6 py-[13px] text-sm font-semibold border border-emerald-600 text-emerald-700 hover:bg-emerald-50 rounded-3xl transition">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                    
+                    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
+                            class="premium-btn px-9 py-[13px] bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-3xl flex items-center gap-x-2 shadow-lg shadow-emerald-600/25">
+                        Get Free Quote
+                    </button>
+
+                    <button onclick="toggleMobileMenu()" class="lg:hidden w-11 h-11 flex items-center justify-center text-2xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero-bg min-h-[100dvh] flex items-center relative pt-8">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="max-w-[720px]">
+                <div class="inline-flex items-center gap-3 bg-white/15 backdrop-blur-2xl border border-white/25 px-6 py-2.5 rounded-3xl mb-9">
+                    <div class="flex -space-x-1">
+                        <div class="w-6 h-6 bg-white rounded-full ring-2 ring-white/50"></div>
+                        <div class="w-6 h-6 bg-emerald-400 rounded-full ring-2 ring-white/50"></div>
+                    </div>
+                    <span class="text-white font-semibold text-sm tracking-wider">Rajasthan’s #1 Solar EPC</span>
+                </div>
+
+                <h1 class="text-white text-[92px] md:text-[110px] leading-[0.9] font-bold tracking-[-6.8px] heading">
+                    ZERO<br>
+                    ELECTRICITY<br>
+                    <span class="bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-400 bg-clip-text text-transparent">BILLS</span>
+                </h1>
+
+                <p class="mt-7 max-w-md text-2xl text-white/90 leading-tight">
+                    Premium rooftop solar with full subsidies.<br>
+                    Real zero bills. Real savings.
+                </p>
+
+                <div class="flex flex-wrap gap-4 mt-11">
+                    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" 
+                            class="premium-btn px-11 py-5 bg-white text-emerald-700 text-[17px] font-semibold rounded-3xl flex items-center gap-x-3 shadow-xl hover:bg-emerald-50">
+                        Book Free Site Survey
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    
+                    <a href="tel:+919548595485" 
+                       class="premium-btn px-8 py-5 border-2 border-white/70 hover:bg-white/10 text-white text-[17px] font-semibold rounded-3xl flex items-center gap-x-3">
+                        <i class="fas fa-phone"></i>
+                        <span>95485 95485</span>
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-x-9 mt-14">
+                    <div>
+                        <div class="flex text-emerald-400 text-2xl">★★★★★</div>
+                        <div class="text-sm text-white/70 mt-1">4.98 • 1,248 reviews</div>
+                    </div>
+                    <div class="h-4 w-px bg-white/30"></div>
+                    <div>
+                        <span class="text-white text-4xl font-semibold">5,200+</span>
+                        <span class="text-white/70 ml-2 text-sm">installations</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TRUST BAR ==================== -->
+    <div class="bg-white py-6 border-b">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex flex-wrap justify-center gap-x-12 gap-y-5 text-sm font-medium opacity-75">
+                <div class="flex items-center gap-x-2"><span class="text-emerald-600">●</span> MNRE Empanelled</div>
+                <div class="flex items-center gap-x-2"><span class="text-emerald-600">●</span> Waaree Certified Partner</div>
+                <div class="flex items-center gap-x-2"><span class="text-emerald-600">●</span> 25-Year Warranty</div>
+                <div class="flex items-center gap-x-2"><span class="text-emerald-600">●</span> Zero Bill Promise</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== ABOUT ==================== -->
+    <section id="about" class="max-w-screen-2xl mx-auto px-8 pt-24 pb-20">
+        <div class="grid lg:grid-cols-12 gap-x-16 items-center">
+            <div class="lg:col-span-7">
+                <span class="px-5 py-2 bg-emerald-100 text-emerald-700 text-xs font-bold tracking-[2.5px] rounded-3xl">SINCE 2018 • JAIPUR</span>
+                <h2 class="section-title mt-7">Building a sustainable<br>Rajasthan, one rooftop<br>at a time.</h2>
+                <p class="mt-7 max-w-2xl text-[17px] text-zinc-600 leading-relaxed">
+                    We are Rajasthan’s most trusted solar EPC company. Our mission is to help every home and business 
+                    achieve complete energy independence through premium solar systems and full government subsidy support.
+                </p>
+
+                <div class="grid grid-cols-3 gap-8 mt-14">
+                    <div>
+                        <div class="text-[56px] font-semibold text-emerald-600 stat">5,200</div>
+                        <div class="text-xs tracking-[1.5px] text-zinc-500 mt-1">HAPPY CUSTOMERS</div>
+                    </div>
+                    <div>
+                        <div class="text-[56px] font-semibold text-emerald-600 stat">52 MW</div>
+                        <div class="text-xs tracking-[1.5px] text-zinc-500 mt-1">CLEAN ENERGY DELIVERED</div>
+                    </div>
+                    <div>
+                        <div class="text-[56px] font-semibold text-emerald-600 stat">98%</div>
+                        <div class="text-xs tracking-[1.5px] text-zinc-500 mt-1">CUSTOMER RETENTION</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-5 mt-12 lg:mt-0">
+                <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+                    <img src="https://picsum.photos/id/1016/900/720" class="w-full" alt="ZERO BILL SOLAR Team">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 p-8 text-white">
+                        <div class="font-semibold">Head Office</div>
+                        <div class="text-sm opacity-90">Vaishali Nagar, Jaipur, Rajasthan 302021</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROCESS ==================== -->
+    <section id="process" class="bg-white py-20 border-y">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="text-center mb-14">
+                <span class="text-emerald-600 font-semibold tracking-[2px] text-sm">4 SIMPLE STEPS</span>
+                <h2 class="section-title mt-3">From site visit to zero bills<br>in under 5 weeks.</h2>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-5">
+                <div class="modern-card bg-zinc-50 p-8 rounded-3xl border border-zinc-100">
+                    <div class="text-emerald-600 text-6xl font-semibold mb-8">01</div>
+                    <div class="font-semibold text-2xl mb-3">Free Consultation</div>
+                    <p class="text-zinc-600">We visit your property, analyze your roof and current electricity usage.</p>
+                </div>
+                <div class="modern-card bg-zinc-50 p-8 rounded-3xl border border-zinc-100">
+                    <div class="text-emerald-600 text-6xl font-semibold mb-8">02</div>
+                    <div class="font-semibold text-2xl mb-3">Custom Design &amp; Subsidy</div>
+                    <p class="text-zinc-600">We design the ideal system and handle all government subsidy paperwork.</p>
+                </div>
+                <div class="modern-card bg-zinc-50 p-8 rounded-3xl border border-zinc-100">
+                    <div class="text-emerald-600 text-6xl font-semibold mb-8">03</div>
+                    <div class="font-semibold text-2xl mb-3">Professional Installation</div>
+                    <p class="text-zinc-600">Certified technicians install premium panels in just 1–2 days.</p>
+                </div>
+                <div class="modern-card bg-zinc-50 p-8 rounded-3xl border border-zinc-100">
+                    <div class="text-emerald-600 text-6xl font-semibold mb-8">04</div>
+                    <div class="font-semibold text-2xl mb-3">Activation &amp; Support</div>
+                    <p class="text-zinc-600">Net metering activation + 5 years of free maintenance and monitoring.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SERVICES ==================== -->
+    <section id="services" class="max-w-screen-2xl mx-auto px-8 py-24">
+        <div class="flex justify-between items-end mb-14">
+            <div>
+                <span class="font-semibold text-emerald-600 tracking-widest">SOLUTIONS WE OFFER</span>
+                <h2 class="section-title mt-2">Premium Solar Systems</h2>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="modern-card bg-white border border-zinc-100 rounded-3xl p-9 group">
+                <div class="service-icon w-16 h-16 bg-emerald-100 rounded-3xl flex items-center justify-center mb-9 text-emerald-600">
+                    <i class="fas fa-plug text-4xl"></i>
+                </div>
+                <h3 class="text-3xl font-semibold">On-Grid Solar</h3>
+                <p class="mt-5 text-zinc-600">Net metering systems that deliver maximum savings and zero electricity bills.</p>
+                <div class="mt-9 pt-8 border-t flex justify-between text-sm">
+                    <div>
+                        <span class="font-semibold text-emerald-600">Most Popular</span><br>
+                        <span class="text-xs text-zinc-500">1–10 kW systems</span>
+                    </div>
+                    <button class="px-6 py-2 border border-emerald-600 text-emerald-700 rounded-2xl text-sm font-medium hover:bg-emerald-600 hover:text-white">Learn more</button>
+                </div>
+            </div>
+
+            <div class="modern-card bg-white border border-zinc-100 rounded-3xl p-9 group">
+                <div class="service-icon w-16 h-16 bg-emerald-100 rounded-3xl flex items-center justify-center mb-9 text-emerald-600">
+                    <i class="fas fa-battery-full text-4xl"></i>
+                </div>
+                <h3 class="text-3xl font-semibold">Off-Grid + Battery</h3>
+                <p class="mt-5 text-zinc-600">Complete energy independence with advanced lithium battery storage.</p>
+                <div class="mt-9 pt-8 border-t flex justify-between text-sm">
+                    <div>
+                        <span class="font-semibold text-emerald-600">Best for Rural</span><br>
+                        <span class="text-xs text-zinc-500">With battery backup</span>
+                    </div>
+                    <button class="px-6 py-2 border border-emerald-600 text-emerald-700 rounded-2xl text-sm font-medium hover:bg-emerald-600 hover:text-white">Learn more</button>
+                </div>
+            </div>
+
+            <div class="modern-card bg-white border border-zinc-100 rounded-3xl p-9 group">
+                <div class="service-icon w-16 h-16 bg-emerald-100 rounded-3xl flex items-center justify-center mb-9 text-emerald-600">
+                    <i class="fas fa-building text-4xl"></i>
+                </div>
+                <h3 class="text-3xl font-semibold">Commercial &amp; Industrial</h3>
+                <p class="mt-5 text-zinc-600">Large-scale solar for factories, schools, hotels and corporate buildings.</p>
+                <div class="mt-9 pt-8 border-t flex justify-between text-sm">
+                    <div>
+                        <span class="font-semibold text-emerald-600">100 kW – 1 MW+</span><br>
+                        <span class="text-xs text-zinc-500">Custom solutions</span>
+                    </div>
+                    <button class="px-6 py-2 border border-emerald-600 text-emerald-700 rounded-2xl text-sm font-medium hover:bg-emerald-600 hover:text-white">Learn more</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SCHEMES ==================== -->
+    <section id="schemes" class="max-w-screen-2xl mx-auto px-8 py-20">
+        <div class="bg-emerald-950 text-white rounded-[3.25rem] px-12 md:px-20 py-16">
+            <div class="max-w-3xl">
+                <span class="px-5 py-1.5 bg-emerald-900 text-emerald-300 text-xs font-bold tracking-[2px] rounded-3xl">PM SURYA GHAR YOJANA</span>
+                <h2 class="text-6xl font-semibold tracking-tight mt-6">Up to ₹78,000<br>subsidy available</h2>
+                <p class="mt-5 text-emerald-200 text-xl">We handle 100% of the subsidy application and documentation for you.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mt-14">
+                <div class="bg-emerald-900/50 p-8 rounded-3xl">
+                    <div class="font-medium">Residential</div>
+                    <div class="text-6xl font-semibold mt-3">₹60K – ₹78K</div>
+                    <div class="text-emerald-400 text-sm mt-1">For 1–3 kW systems</div>
+                </div>
+                <div class="bg-emerald-900/50 p-8 rounded-3xl">
+                    <div class="font-medium">Net Metering</div>
+                    <div class="text-6xl font-semibold mt-3">Completely Free</div>
+                    <div class="text-emerald-400 text-sm mt-1">Full paperwork support</div>
+                </div>
+                <div class="bg-emerald-900/50 p-8 rounded-3xl">
+                    <div class="font-medium">Bank Loan</div>
+                    <div class="text-6xl font-semibold mt-3">Low Interest</div>
+                    <div class="text-emerald-400 text-sm mt-1">Attractive EMI options</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROJECTS ==================== -->
+    <section id="projects" class="max-w-screen-2xl mx-auto px-8 py-24">
+        <div class="flex justify-between items-end mb-12">
+            <div>
+                <span class="font-semibold text-emerald-600">REAL RESULTS</span>
+                <h2 class="section-title">Featured Installations</h2>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div class="group relative overflow-hidden rounded-3xl aspect-[16/13]">
+                <img src="https://picsum.photos/id/1018/700/620" class="w-full h-full object-cover group-hover:scale-[1.07] transition duration-700" alt="4kW Residential">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 to-black/75"></div>
+                <div class="absolute bottom-0 p-7 text-white">
+                    <div class="font-semibold text-2xl">4 kW Residential</div>
+                    <div class="text-emerald-300 text-sm">Vaishali Nagar, Jaipur • Zero Bill</div>
+                </div>
+            </div>
+            <div class="group relative overflow-hidden rounded-3xl aspect-[16/13]">
+                <img src="https://picsum.photos/id/866/700/620" class="w-full h-full object-cover group-hover:scale-[1.07] transition duration-700" alt="15kW School">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 to-black/75"></div>
+                <div class="absolute bottom-0 p-7 text-white">
+                    <div class="font-semibold text-2xl">15 kW School</div>
+                    <div class="text-emerald-300 text-sm">Bikaner • 87% savings</div>
+                </div>
+            </div>
+            <div class="group relative overflow-hidden rounded-3xl aspect-[16/13]">
+                <img src="https://picsum.photos/id/201/700/620" class="w-full h-full object-cover group-hover:scale-[1.07] transition duration-700" alt="120kW Industrial">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 to-black/75"></div>
+                <div class="absolute bottom-0 p-7 text-white">
+                    <div class="font-semibold text-2xl">120 kW Industrial</div>
+                    <div class="text-emerald-300 text-sm">Sri Ganganagar • ₹19L+ saved/year</div>
+                </div>
+            </div>
+            <div class="group relative overflow-hidden rounded-3xl aspect-[16/13]">
+                <img src="https://picsum.photos/id/1015/700/620" class="w-full h-full object-cover group-hover:scale-[1.07] transition duration-700" alt="Off-grid Farm">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 to-black/75"></div>
+                <div class="absolute bottom-0 p-7 text-white">
+                    <div class="font-semibold text-2xl">8 kW Off-Grid Farm</div>
+                    <div class="text-emerald-300 text-sm">Hanumangarh • Full independence</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== WHY US ==================== -->
+    <section id="why" class="bg-zinc-900 py-24 text-white">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-title">Why 5,200+ families<br>choose ZERO BILL SOLAR</h2>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="p-8 bg-zinc-800 rounded-3xl">
+                    <i class="fas fa-handshake text-emerald-400 text-5xl mb-8"></i>
+                    <div class="font-semibold text-2xl">End-to-End Service</div>
+                    <p class="mt-4 text-zinc-400">Survey, design, subsidy, installation, net metering &amp; 5-year maintenance — everything handled by us.</p>
+                </div>
+                <div class="p-8 bg-zinc-800 rounded-3xl">
+                    <i class="fas fa-medal text-emerald-400 text-5xl mb-8"></i>
+                    <div class="font-semibold text-2xl">Tier-1 Quality</div>
+                    <p class="mt-4 text-zinc-400">Only Waaree, Longi and premium inverters with 25-year performance warranty.</p>
+                </div>
+                <div class="p-8 bg-zinc-800 rounded-3xl">
+                    <i class="fas fa-chart-line text-emerald-400 text-5xl mb-8"></i>
+                    <div class="font-semibold text-2xl">Fast Payback</div>
+                    <p class="mt-4 text-zinc-400">Average ROI in just 3.5 years. After that — completely free electricity.</p>
+                </div>
+                <div class="p-8 bg-zinc-800 rounded-3xl">
+                    <i class="fas fa-headset text-emerald-400 text-5xl mb-8"></i>
+                    <div class="font-semibold text-2xl">5 Years Free Service</div>
+                    <p class="mt-4 text-zinc-400">Free cleaning, monitoring app, and 24×7 support included.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TESTIMONIALS ==================== -->
+    <section class="max-w-screen-2xl mx-auto px-8 py-24">
+        <div class="text-center mb-14">
+            <h2 class="section-title">Real stories from<br>real customers</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="glass p-9 rounded-3xl">
+                <div class="flex text-emerald-500 mb-7">★★★★★</div>
+                <p class="italic">"My bill dropped from ₹9,800 to just ₹140. The team handled everything perfectly. Best decision ever."</p>
+                <div class="mt-9 flex items-center gap-4">
+                    <div class="w-11 h-11 bg-emerald-200 rounded-full"></div>
+                    <div>
+                        <div class="font-semibold">Anil Choudhary</div>
+                        <div class="text-xs text-zinc-500">Vaishali Nagar, Jaipur • 6kW</div>
+                    </div>
+                </div>
+            </div>
+            <div class="glass p-9 rounded-3xl">
+                <div class="flex text-emerald-500 mb-7">★★★★★</div>
+                <p class="italic">"Installed 25kW at my factory. Saved over ₹2.1 lakh in the first year. Professional team and excellent service."</p>
+                <div class="mt-9 flex items-center gap-4">
+                    <div class="w-11 h-11 bg-emerald-200 rounded-full"></div>
+                    <div>
+                        <div class="font-semibold">Vikram Agarwal</div>
+                        <div class="text-xs text-zinc-500">Sri Ganganagar • Industrial</div>
+                    </div>
+                </div>
+            </div>
+            <div class="glass p-9 rounded-3xl">
+                <div class="flex text-emerald-500 mb-7">★★★★★</div>
+                <p class="italic">"The zero bill promise is real. They took care of subsidy, loan and installation. Extremely satisfied."</p>
+                <div class="mt-9 flex items-center gap-4">
+                    <div class="w-11 h-11 bg-emerald-200 rounded-full"></div>
+                    <div>
+                        <div class="font-semibold">Priya Mehta</div>
+                        <div class="text-xs text-zinc-500">Bikaner • 4kW</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FAQ ==================== -->
+    <section class="max-w-screen-2xl mx-auto px-8 py-20 bg-zinc-50">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-14">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+            <div id="faq-container" class="space-y-3"></div>
+        </div>
+    </section>
+
+    <!-- ==================== CALCULATOR ==================== -->
+    <section class="max-w-screen-2xl mx-auto px-8 py-24">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="section-title">Calculate your savings</h2>
+            <p class="text-xl text-zinc-600 mt-4">See how much you can save every year</p>
+        </div>
+
+        <div class="max-w-2xl mx-auto mt-12 bg-white border border-zinc-100 p-12 rounded-3xl shadow-sm">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <label class="block text-xs font-medium tracking-widest mb-3 text-zinc-500">CURRENT MONTHLY BILL</label>
+                    <div class="relative">
+                        <span class="absolute left-7 top-6 text-4xl text-zinc-300">₹</span>
+                        <input id="billInput" type="number" value="7200" 
+                               class="w-full pl-14 text-[52px] font-light py-5 bg-zinc-50 border border-zinc-200 rounded-3xl focus:outline-none focus:border-emerald-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium tracking-widest mb-3 text-zinc-500">SYSTEM SIZE (kW)</label>
+                    <input id="kwInput" type="number" value="5" step="0.5"
+                           class="w-full text-[52px] font-light py-5 bg-zinc-50 border border-zinc-200 rounded-3xl focus:outline-none focus:border-emerald-500 px-7">
+                </div>
+            </div>
+
+            <button onclick="calculateSavingsUltra()" 
+                    class="mt-10 w-full py-6 bg-emerald-600 hover:bg-emerald-700 text-white text-xl font-semibold rounded-3xl transition">
+                CALCULATE MY ANNUAL SAVINGS
+            </button>
+
+            <div id="resultBox" class="hidden mt-10 text-center">
+                <div class="text-xs tracking-[2px] text-emerald-600 font-medium">YOUR ESTIMATED ANNUAL SAVINGS</div>
+                <div id="savingsValue" class="text-[72px] font-semibold text-emerald-600 mt-1"></div>
+                <div class="text-emerald-600">Payback in approximately 3.6 years</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section id="contact" class="max-w-screen-2xl mx-auto px-8 py-24">
+        <div class="grid lg:grid-cols-12 gap-x-16">
+            <div class="lg:col-span-5">
+                <h2 class="section-title">Ready to start<br>saving today?</h2>
+                <p class="mt-6 text-xl text-zinc-600">Book your free site visit.<br>Our expert will visit within 24 hours.</p>
+                
+                <div class="mt-12 space-y-9">
+                    <div>
+                        <div class="font-semibold mb-1">Call / WhatsApp</div>
+                        <a href="tel:+919548595485" class="text-4xl font-medium text-emerald-600">95485 95485</a>
+                    </div>
+                    <div>
+                        <div class="font-semibold mb-1">Email</div>
+                        <a href="mailto:zerobillsolar@waareepartners.com" class="text-emerald-600">zerobillsolar@waareepartners.com</a>
+                    </div>
+                    <div>
+                        <div class="font-semibold mb-1">Office Address</div>
+                        <div class="text-zinc-600">Shree Kanhaiya Mansion, A-12, Nursery Circle,<br>Vaishali Nagar, Jaipur, Rajasthan 302021</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 mt-14 lg:mt-0">
+                <div class="bg-white p-12 rounded-3xl border border-zinc-100">
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <input type="text" placeholder="Full Name" class="px-7 py-4 bg-zinc-50 rounded-3xl border border-zinc-200 focus:border-emerald-500 outline-none" required>
+                            <input type="tel" placeholder="Phone Number" class="px-7 py-4 bg-zinc-50 rounded-3xl border border-zinc-200 focus:border-emerald-500 outline-none" required>
+                        </div>
+                        <input type="email" placeholder="Email Address" class="w-full px-7 py-4 bg-zinc-50 rounded-3xl border border-zinc-200 focus:border-emerald-500 outline-none">
+                        <textarea placeholder="Tell us about your roof and current monthly bill..." rows="5" 
+                                  class="w-full px-7 py-4 bg-zinc-50 rounded-3xl border border-zinc-200 focus:border-emerald-500 outline-none"></textarea>
+                        
+                        <button type="button" onclick="submitFormUltra()"
+                                class="w-full py-6 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xl rounded-3xl transition">
+                            SUBMIT REQUEST — FREE SITE VISIT
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-zinc-900 py-16 text-zinc-400 text-sm">
+        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-4 gap-y-12">
+            <div>
+                <div class="flex items-center gap-x-3 text-white mb-5">
+                    <div class="w-9 h-9 bg-emerald-600 rounded-2xl flex items-center justify-center"><i class="fas fa-solar-panel"></i></div>
+                    <span class="font-bold text-3xl tracking-[-2px]">ZERO BILL</span>
+                </div>
+                <p class="max-w-[220px]">Premium solar solutions for a sustainable Rajasthan.</p>
+            </div>
+            <div>
+                <div class="font-medium text-white mb-5">Company</div>
+                <div class="space-y-2 text-xs">About Us<br>Our Process<br>Careers</div>
+            </div>
+            <div>
+                <div class="font-medium text-white mb-5">Resources</div>
+                <div class="space-y-2 text-xs">Subsidy Guide<br>Net Metering<br>Blog</div>
+            </div>
+            <div>
+                <div class="font-medium text-white mb-5">Contact</div>
+                <div class="space-y-1 text-xs">95485 95485<br>Vaishali Nagar, Jaipur</div>
+                <div class="mt-8 text-xs">© 2026 ZERO BILL SOLAR ENERGY</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/919548595485" target="_blank"
+       class="fixed bottom-8 right-8 w-16 h-16 bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center rounded-3xl shadow-2xl text-4xl z-50">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function initialize() {
+            setupFAQ();
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Animate stats on scroll
+            const statsSection = document.getElementById('about');
+            if (statsSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        const stats = document.querySelectorAll('.stat');
+                        stats.forEach(stat => {
+                            const finalValue = stat.textContent;
+                            stat.textContent = '0';
+                            
+                            let current = 0;
+                            const target = parseInt(finalValue.replace(/[^0-9]/g, ''));
+                            const increment = Math.ceil(target / 60);
+                            
+                            const timer = setInterval(() => {
+                                current += increment;
+                                if (current >= target) {
+                                    stat.textContent = finalValue;
+                                    clearInterval(timer);
+                                } else {
+                                    if (finalValue.includes('MW')) {
+                                        stat.textContent = current + ' MW';
+                                    } else if (finalValue.includes('%')) {
+                                        stat.textContent = current + '%';
+                                    } else {
+                                        stat.textContent = current.toLocaleString();
+                                    }
+                                }
+                            }, 30);
+                        });
+                        observer.disconnect();
+                    }
+                });
+                observer.observe(statsSection);
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.createElement('div');
+            menu.className = 'fixed inset-0 bg-black/70 z-[200] lg:hidden';
+            menu.innerHTML = `
+                <div class="bg-white w-80 h-full p-8">
+                    <div class="flex justify-between items-center mb-10">
+                        <div class="font-bold text-3xl tracking-tight">ZERO BILL</div>
+                        <button class="text-4xl text-zinc-400" onclick="this.closest('.fixed').remove()">×</button>
+                    </div>
+                    <div class="flex flex-col gap-y-6 text-xl">
+                        <a href="#about" class="py-1">About</a>
+                        <a href="#process" class="py-1">Process</a>
+                        <a href="#services" class="py-1">Services</a>
+                        <a href="#schemes" class="py-1">Schemes</a>
+                        <a href="#projects" class="py-1">Projects</a>
+                        <a href="#why" class="py-1">Why Us</a>
+                        <a href="#contact" class="py-1">Contact</a>
+                    </div>
+                    <div class="mt-16">
+                        <a href="https://wa.me/919548595485" class="block text-center py-4 bg-emerald-600 text-white rounded-3xl font-medium">Chat on WhatsApp</a>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(menu);
+        }
+
+        function setupFAQ() {
+            const container = document.getElementById('faq-container');
+            const faqs = [
+                { q: "How much subsidy can I get?", a: "Under PM Surya Ghar Yojana, eligible households can get up to ₹78,000 subsidy. We handle the complete application process for you." },
+                { q: "What is the payback period?", a: "Most customers recover their investment in 3 to 4 years. After that, you enjoy free electricity for the remaining 20+ years." },
+                { q: "Do you provide maintenance?", a: "Yes. We provide 5 years of free comprehensive maintenance including regular cleaning, performance monitoring, and repairs." },
+                { q: "How long does installation take?", a: "A typical residential system is installed in just 1–2 days after site approval and net metering process." }
+            ];
+
+            faqs.forEach(faq => {
+                const item = document.createElement('div');
+                item.className = `faq-item border border-zinc-200 rounded-3xl overflow-hidden bg-white`;
+                item.innerHTML = `
+                    <button onclick="toggleFAQ(this)" class="w-full px-8 py-7 flex justify-between items-center text-left font-semibold text-lg hover:bg-zinc-50 transition">
+                        <span>${faq.q}</span>
+                        <i class="fas fa-chevron-down text-emerald-600 transition-transform"></i>
+                    </button>
+                    <div class="px-8 pb-8 text-zinc-600 hidden leading-relaxed">${faq.a}</div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                answer.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function calculateSavingsUltra() {
+            const bill = parseFloat(document.getElementById('billInput').value) || 7200;
+            const kw = parseFloat(document.getElementById('kwInput').value) || 5;
+
+            const annualSavings = Math.round(bill * 12 * 0.87);
+            const result = document.getElementById('resultBox');
+            const valueEl = document.getElementById('savingsValue');
+
+            valueEl.textContent = '₹' + annualSavings.toLocaleString('en-IN');
+            result.classList.remove('hidden');
+            result.style.opacity = '0';
+            
+            setTimeout(() => {
+                result.style.transition = 'opacity 0.5s ease';
+                result.style.opacity = '1';
+            }, 80);
+        }
+
+        function submitFormUltra() {
+            const form = document.getElementById('contactForm');
+            form.innerHTML = `
+                <div class="text-center py-16">
+                    <div class="mx-auto w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-check-circle text-emerald-600 text-6xl"></i>
+                    </div>
+                    <div class="text-4xl font-semibold">Thank you!</div>
+                    <p class="mt-4 text-zinc-600">Our team will contact you within 2 hours to schedule your free site survey.</p>
+                </div>
+            `;
+        }
+
+        window.onload = initialize;
+    </script>
+</body>
+</html>

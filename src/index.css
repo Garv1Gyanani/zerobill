@@ -15,26 +15,7 @@
   --radius-lg: 32px;
   --radius-xl: 40px;
 
-  /* Theme: Dark Mode (Default for premium feel) */
-  --bg-primary: #09090b;
-  --bg-secondary: #121214;
-  --bg-tertiary: #1a1a1e;
-  --text-primary: #fafafa;
-  --text-secondary: #a1a1aa;
-  --text-tertiary: #52525b;
-  --accent: #10b981; /* emerald-500 */
-  --accent-hover: #34d399; /* emerald-400 */
-  --accent-glow: rgba(16, 185, 129, 0.15);
-  --border: rgba(255, 255, 255, 0.06);
-  --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
-  --glass-bg: rgba(18, 18, 20, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.05);
-  --hero-overlay: linear-gradient(180deg, rgba(9, 9, 11, 0.6) 0%, rgba(9, 9, 11, 0.92) 100%);
-  --slider-track: #27272a;
-}
-
-[data-theme="light"] {
-  /* Theme: Light Mode */
+  /* Theme: Light Mode (Default) */
   --bg-primary: #f8fafc; /* slate-50 */
   --bg-secondary: #ffffff;
   --bg-tertiary: #f1f5f9; /* slate-100 */
@@ -52,6 +33,25 @@
   --slider-track: #e2e8f0;
 }
 
+[data-theme="dark"] {
+  /* Theme: Dark Mode */
+  --bg-primary: #09090b;
+  --bg-secondary: #121214;
+  --bg-tertiary: #1a1a1e;
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #52525b;
+  --accent: #10b981; /* emerald-500 */
+  --accent-hover: #34d399; /* emerald-400 */
+  --accent-glow: rgba(16, 185, 129, 0.15);
+  --border: rgba(255, 255, 255, 0.06);
+  --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+  --glass-bg: rgba(18, 18, 20, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --hero-overlay: linear-gradient(180deg, rgba(9, 9, 11, 0.6) 0%, rgba(9, 9, 11, 0.92) 100%);
+  --slider-track: #27272a;
+}
+
 /* ==========================================================================
    RESET & GLOBAL BASICS
    ========================================================================== */
@@ -63,9 +63,11 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
   font-size: 16px;
   background-color: var(--bg-primary);
   color: var(--text-primary);
+  overflow-x: hidden;
 }
 
 body {
@@ -728,7 +730,6 @@ button {
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 3.5rem;
-    text-align: center;
   }
 }
 
@@ -1130,21 +1131,11 @@ button {
   display: flex;
   flex-direction: column;
 }
-@media (max-width: 1024px) {
-  .contact-info {
-    text-align: center;
-  }
-}
 
 .contact-direct-details {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-}
-@media (max-width: 1024px) {
-  .contact-direct-details {
-    align-items: center;
-  }
 }
 
 .contact-form-container {

@@ -69,7 +69,7 @@ interface Service {
 }
 
 function App() {
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [theme, setTheme] = useState<'dark' | 'light'>('light');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [projectFilter, setProjectFilter] = useState<'all' | 'residential' | 'commercial' | 'offgrid'>('all');
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -1716,10 +1716,11 @@ const styles: Record<string, React.CSSProperties> = {
     letterSpacing: '0.05em',
   },
   contactDetailLink: {
-    fontSize: '1.35rem',
+    fontSize: 'clamp(1rem, 3.5vw, 1.35rem)',
     fontWeight: '700',
     color: 'var(--text-primary)',
     transition: 'var(--transition-smooth)',
+    wordBreak: 'break-word',
   },
   contactFormContainer: {},
   formStructure: {

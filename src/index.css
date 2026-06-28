@@ -398,10 +398,10 @@ button {
 /* Hero elements */
 .hero-wrapper {
   position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
-  padding: 8rem 0 4rem;
+  padding: 7rem 0 3.5rem;
   overflow: hidden;
   background: var(--bg-primary);
 }
@@ -1650,6 +1650,74 @@ button {
 [data-theme="light"] #testimonials {
   background-image: linear-gradient(to bottom, rgba(248, 250, 252, 0.92), rgba(248, 250, 252, 0.97)), url('/testimonials-bg.webp');
 }
+
+/* ==========================================================================
+   PROJECT DETAILS PAGE STYLES
+   ========================================================================== */
+.details-page {
+  padding: 5rem 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 80vh;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.spec-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 0;
+}
+
+@media (max-width: 480px) {
+  .spec-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+    padding: 0.5rem 0;
+  }
+}
+
+.spec-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.spec-value {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Inquiry Page Responsive Grid */
+.inquiry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .inquiry-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
 
 
 

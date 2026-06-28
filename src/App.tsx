@@ -90,11 +90,16 @@ function App() {
 
   // Modal State for Project Details
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [showInquiry, setShowInquiry] = useState<boolean>(false);
 
   useEffect(() => {
     // Set theme attribute on html node
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [selectedProject, showInquiry]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -396,8 +401,42 @@ function App() {
         </div>
       )}
 
-      {/* ==================== HERO SECTION ==================== */}
-      <section id="hero" className="hero-wrapper">
+      {selectedProject ? (
+        showInquiry ? (
+          <InquiryPageView
+            project={selectedProject}
+            onBack={() => setShowInquiry(false)}
+            fullName={fullName}
+            setFullName={setFullName}
+            phoneNumber={phoneNumber}
+            setPhoneNumber={setPhoneNumber}
+            emailAddress={emailAddress}
+            setEmailAddress={setEmailAddress}
+            roofDetails={roofDetails}
+            setRoofDetails={setRoofDetails}
+            onSubmit={handleFormSubmit}
+            isSubmitting={isSubmitting}
+            submitSuccess={submitSuccess}
+            setSubmitSuccess={setSubmitSuccess}
+            onGoHome={() => {
+              setShowInquiry(false);
+              setSelectedProject(null);
+            }}
+          />
+        ) : (
+          <ProjectDetailsView 
+            project={selectedProject} 
+            onBack={() => setSelectedProject(null)} 
+            onInquire={(setupInfo) => {
+              setRoofDetails(setupInfo);
+              setShowInquiry(true);
+            }} 
+          />
+        )
+      ) : (
+        <>
+          {/* ==================== HERO SECTION ==================== */}
+          <section id="hero" className="hero-wrapper">
         <div className="hero-mesh"></div>
         
         {/* Interactive Image Container with Hotspots */}
@@ -978,6 +1017,8 @@ function App() {
           </div>
         </div>
       </section>
+        </>
+      )}
 
       {/* ==================== FOOTER ==================== */}
       <footer className="main-footer">
@@ -1036,79 +1077,7 @@ function App() {
 
       {/* ==================== FLOATING WIDGETS ==================== */}
       
-      {/* ==================== PROJECT DETAILS MODAL ==================== */}
-      {selectedProject && (
-        <div style={styles.modalOverlay} onClick={() => setSelectedProject(null)}>
-          <div className="modal-content" style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <button 
-              onClick={() => setSelectedProject(null)} 
-              style={styles.modalCloseBtn}
-              aria-label="Close project details"
-            >
-              <X size={24} />
-            </button>
 
-            <div className="modal-grid" style={styles.modalGrid}>
-              {/* Image Column */}
-              <div className="modal-image-column" style={styles.modalImageColumn}>
-                {/* Blurred background image */}
-                <img 
-                  src={selectedProject.imageUrl} 
-                  alt="" 
-                  style={styles.modalImageBlurBackground} 
-                />
-                {/* Sharp foreground image */}
-                <img 
-                  src={selectedProject.imageUrl} 
-                  alt={selectedProject.title} 
-                  style={styles.modalImage} 
-                />
-                <div style={styles.modalBadgeOverlay}>
-                  <span className="badge badge-accent" style={{ background: 'var(--accent)', color: 'white', border: 'none' }}>
-                    {selectedProject.metric}
-                  </span>
-                </div>
-              </div>
-
-              {/* Specs & Description Column */}
-              <div className="modal-text-column" style={styles.modalTextColumn}>
-                <span className="section-subtitle" style={{ fontSize: '0.8rem', marginBottom: '0.5rem' }}>
-                  {selectedProject.category.toUpperCase()} • {selectedProject.location}
-                </span>
-                <h3 className="heading modal-title" style={styles.modalTitle}>{selectedProject.title}</h3>
-                
-                <p style={styles.modalDesc}>{selectedProject.description}</p>
-
-                <div style={styles.modalSpecsGrid}>
-                  <h4 style={styles.specsHeading}>Technical Specifications</h4>
-                  <div style={styles.specsList}>
-                    {selectedProject.specs.map((spec, i) => (
-                      <div key={i} style={styles.specRow}>
-                        <span style={styles.specLabel}>{spec.label}</span>
-                        <span style={styles.specValue}>{spec.value}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <button 
-                  onClick={() => {
-                    const setupInfo = `Interested in a ${selectedProject.title} setup similar to ${selectedProject.location}.`;
-                    setRoofDetails(setupInfo);
-                    setSelectedProject(null);
-                    scrollToSection('contact');
-                  }} 
-                  className="btn btn-primary"
-                  style={{ width: '100%', marginTop: 'auto', borderRadius: 'var(--radius-sm)' }}
-                >
-                  Inquire About This Setup
-                  <ArrowRight size={18} />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Floating WhatsApp */}
       <a 
@@ -1809,9 +1778,426 @@ const styles: Record<string, React.CSSProperties> = {
     flexWrap: 'wrap' as const,
     gap: '1rem',
     fontSize: '0.8rem',
-  }
+  },
+  detailsPage: {
+    padding: '3rem 0',
+    minHeight: '60vh',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  detailsContainer: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '2.5rem',
+    width: '100%',
+  },
+  detailsNav: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottom: '1px solid var(--border)',
+    paddingBottom: '1.25rem',
+    flexWrap: 'wrap' as const,
+    gap: '1rem',
+    width: '100%',
+  },
+  backBtn: {
+    background: 'none',
+    border: 'none',
+    color: 'var(--accent)',
+    fontSize: '0.95rem',
+    fontWeight: '700',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    cursor: 'pointer',
+    padding: 0,
+    transition: 'var(--transition-smooth)',
+  },
+  breadcrumb: {
+    fontSize: '0.85rem',
+    color: 'var(--text-secondary)',
+    fontWeight: '500',
+  },
+  detailsImageColumn: {
+    width: '100%',
+  },
+  detailsImageWrapper: {
+    position: 'relative' as const,
+    borderRadius: 'var(--radius-lg)',
+    overflow: 'hidden',
+    boxShadow: 'var(--card-shadow)',
+    width: '100%',
+    aspectRatio: '1.4',
+  },
+  detailsImage: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover' as const,
+  },
+  detailsBadge: {
+    position: 'absolute' as const,
+    top: '1.5rem',
+    left: '1.5rem',
+    background: 'var(--accent)',
+    color: '#ffffff',
+    padding: '0.6rem 1.25rem',
+    borderRadius: '9999px',
+    fontSize: '0.85rem',
+    fontWeight: '600',
+    boxShadow: '0 8px 20px rgba(16, 185, 129, 0.25)',
+  },
+  detailsContentColumn: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    width: '100%',
+  },
+  detailsTitle: {
+    fontSize: 'clamp(2.25rem, 5vw, 3.25rem)',
+    fontWeight: '700',
+    letterSpacing: '-0.04em',
+    marginBottom: '1.5rem',
+    lineHeight: '1.1',
+    color: 'var(--text-primary)',
+  },
+  detailsDesc: {
+    fontSize: '1.05rem',
+    lineHeight: '1.65',
+    color: 'var(--text-secondary)',
+    marginBottom: '2.5rem',
+  },
+  detailsSpecsWrapper: {
+    marginBottom: '2.5rem',
+    width: '100%',
+  },
+  detailsSpecsList: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    width: '100%',
+  },
+  detailsInquireBtn: {
+    alignSelf: 'flex-start',
+    width: '100%',
+    padding: '1.1rem 2rem',
+    fontSize: '1.05rem',
+    borderRadius: 'var(--radius-md)',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '0.75rem',
+  },
+  inquiryPage: {
+    padding: '4rem 0',
+    background: 'var(--bg-primary)',
+    minHeight: '80vh',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  inquiryContainer: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '2.5rem',
+    width: '100%',
+  },
+  inquirySummaryCard: {
+    background: 'var(--bg-secondary)',
+    border: '1px solid var(--border)',
+    borderRadius: 'var(--radius-md)',
+    padding: '2rem',
+  },
+  miniProjectCard: {
+    display: 'flex',
+    gap: '1.25rem',
+    alignItems: 'center',
+  },
+  miniImageWrapper: {
+    width: '80px',
+    height: '80px',
+    borderRadius: 'var(--radius-xs)',
+    overflow: 'hidden',
+    flexShrink: 0,
+  },
+  miniImage: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover' as const,
+  },
+  miniCardContent: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '0.25rem',
+  },
+  miniBadge: {
+    display: 'inline-block',
+    fontSize: '0.72rem',
+    fontWeight: '700',
+    color: 'var(--accent)',
+    textTransform: 'uppercase' as const,
+  },
+  miniTitle: {
+    fontSize: '1.15rem',
+    fontWeight: '700',
+    color: 'var(--text-primary)',
+  },
+  miniLocation: {
+    fontSize: '0.85rem',
+    color: 'var(--text-secondary)',
+  },
+  inquiryFormCard: {
+    padding: '3rem',
+    borderRadius: 'var(--radius-lg)',
+    width: '100%',
+  },
 };
 
+interface ProjectDetailsViewProps {
+  project: Project;
+  onBack: () => void;
+  onInquire: (setupInfo: string) => void;
+}
 
+const ProjectDetailsView: React.FC<ProjectDetailsViewProps> = ({ project, onBack, onInquire }) => {
+  return (
+    <main className="details-page" style={styles.detailsPage}>
+      <div className="container" style={styles.detailsContainer}>
+        {/* Breadcrumb / Back Navigation */}
+        <div style={styles.detailsNav}>
+          <button onClick={onBack} style={styles.backBtn}>
+            <ChevronLeft size={16} />
+            <span>Back to Home</span>
+          </button>
+          <span style={styles.breadcrumb}>
+            Projects / {project.title}
+          </span>
+        </div>
+
+        {/* Project Details Grid */}
+        <div className="details-grid">
+          {/* Left Column: Image Card */}
+          <div style={styles.detailsImageColumn}>
+            <div style={styles.detailsImageWrapper}>
+              <img src={project.imageUrl} alt={project.title} style={styles.detailsImage} />
+              <div style={styles.detailsBadge}>
+                {project.metric}
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Content Card */}
+          <div style={styles.detailsContentColumn}>
+            <span className="section-subtitle" style={{ fontSize: '0.85rem', marginBottom: '0.5rem' }}>
+              {project.category.toUpperCase()} • {project.location}
+            </span>
+            <h1 className="heading" style={styles.detailsTitle}>{project.title}</h1>
+            
+            <p style={styles.detailsDesc}>{project.description}</p>
+
+            <div style={styles.detailsSpecsWrapper}>
+              <h4 style={styles.specsHeading}>Technical Specifications</h4>
+              <div style={styles.detailsSpecsList}>
+                {project.specs.map((spec, i) => (
+                  <div key={i} className="spec-row">
+                    <span className="spec-label">{spec.label}</span>
+                    <span className="spec-value">{spec.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <button 
+              onClick={() => {
+                const setupInfo = `Interested in a ${project.title} setup similar to ${project.location}.`;
+                onInquire(setupInfo);
+              }} 
+              className="btn btn-primary"
+              style={styles.detailsInquireBtn}
+            >
+              Inquire About This Setup
+              <ArrowRight size={18} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+};
+
+interface InquiryPageViewProps {
+  project: Project;
+  onBack: () => void;
+  fullName: string;
+  setFullName: (val: string) => void;
+  phoneNumber: string;
+  setPhoneNumber: (val: string) => void;
+  emailAddress: string;
+  setEmailAddress: (val: string) => void;
+  roofDetails: string;
+  setRoofDetails: (val: string) => void;
+  onSubmit: (e: React.FormEvent) => void;
+  isSubmitting: boolean;
+  submitSuccess: boolean;
+  setSubmitSuccess: (val: boolean) => void;
+  onGoHome: () => void;
+}
+
+const InquiryPageView: React.FC<InquiryPageViewProps> = ({
+  project,
+  onBack,
+  fullName,
+  setFullName,
+  phoneNumber,
+  setPhoneNumber,
+  emailAddress,
+  setEmailAddress,
+  roofDetails,
+  setRoofDetails,
+  onSubmit,
+  isSubmitting,
+  submitSuccess,
+  setSubmitSuccess,
+  onGoHome,
+}) => {
+  useEffect(() => {
+    if (!roofDetails) {
+      setRoofDetails(`Interested in a ${project.title} setup similar to ${project.location}.`);
+    }
+  }, [project, roofDetails, setRoofDetails]);
+
+  return (
+    <main className="inquiry-page" style={styles.inquiryPage}>
+      <div className="container" style={styles.inquiryContainer}>
+        {/* Navigation */}
+        <div style={styles.detailsNav}>
+          <button onClick={onBack} style={styles.backBtn}>
+            <ChevronLeft size={16} />
+            <span>Back to Details</span>
+          </button>
+          <span style={styles.breadcrumb}>
+            Inquiry / {project.title}
+          </span>
+        </div>
+
+        <div className="inquiry-grid">
+          {/* Left Side: Summary Card */}
+          <div style={styles.inquirySummaryCard}>
+            <h3 className="heading" style={{ fontSize: '1.5rem', marginBottom: '1.25rem', color: 'var(--text-primary)' }}>Selected Setup</h3>
+            <div style={styles.miniProjectCard}>
+              <div style={styles.miniImageWrapper}>
+                <img src={project.imageUrl} alt={project.title} style={styles.miniImage} />
+              </div>
+              <div style={styles.miniCardContent}>
+                <span style={styles.miniBadge}>{project.metric}</span>
+                <h4 style={styles.miniTitle}>{project.title}</h4>
+                <p style={styles.miniLocation}>{project.location}</p>
+              </div>
+            </div>
+            <div style={{ marginTop: '2rem', borderTop: '1px solid var(--border)', paddingTop: '1.5rem' }}>
+              <h5 style={{ fontWeight: '700', fontSize: '0.9rem', marginBottom: '0.75rem', color: 'var(--text-primary)' }}>Why this configuration?</h5>
+              <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
+                This {project.title} installation uses Waaree certified panels and inverters optimized for Rajasthan's climate, securing high efficiency and the maximum state subsidy of up to ₹78,000.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Side: Form Card */}
+          <div className="glass-panel" style={styles.inquiryFormCard}>
+            {submitSuccess ? (
+              <div style={styles.successScreen}>
+                <CheckCircle size={64} color="#10b981" style={{ marginBottom: '1.5rem' }} />
+                <h3 className="heading" style={{ fontSize: '1.75rem', marginBottom: '0.75rem', color: 'var(--text-primary)' }}>Inquiry Submitted!</h3>
+                <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '400px', lineHeight: '1.5' }}>
+                  Thank you, {fullName}. Our solar engineer will review the details for the <strong>{project.title}</strong> setup and contact you at <strong>{phoneNumber}</strong> within 2 hours.
+                </p>
+                <button 
+                  onClick={() => {
+                    setSubmitSuccess(false);
+                    setFullName('');
+                    setPhoneNumber('');
+                    setEmailAddress('');
+                    setRoofDetails('');
+                    onGoHome();
+                  }} 
+                  className="btn btn-primary"
+                  style={{ borderRadius: 'var(--radius-sm)' }}
+                >
+                  Return to Home
+                </button>
+              </div>
+            ) : (
+              <div>
+                <h2 className="heading" style={{ fontSize: '1.85rem', marginBottom: '0.5rem', color: 'var(--text-primary)' }}>Request Site Survey</h2>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '2rem', lineHeight: '1.5' }}>
+                  Fill in your details below. We will analyze your roof requirements and get back with a customized quote.
+                </p>
+                
+                <form onSubmit={onSubmit} style={styles.formStructure}>
+                  <div className="form-row" style={styles.formRow}>
+                    <div style={styles.formInputWrapper}>
+                      <label style={styles.formLabel}>Full Name</label>
+                      <input 
+                        type="text" 
+                        required 
+                        placeholder="Anil Choudhary" 
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        className="form-input"
+                        style={styles.formInput}
+                      />
+                    </div>
+                    <div style={styles.formInputWrapper}>
+                      <label style={styles.formLabel}>Phone Number</label>
+                      <input 
+                        type="tel" 
+                        required 
+                        placeholder="95485 95485" 
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        className="form-input"
+                        style={styles.formInput}
+                      />
+                    </div>
+                  </div>
+
+                  <div style={styles.formInputWrapper}>
+                    <label style={styles.formLabel}>Email Address (Optional)</label>
+                    <input 
+                      type="email" 
+                      placeholder="name@domain.com" 
+                      value={emailAddress}
+                      onChange={(e) => setEmailAddress(e.target.value)}
+                      className="form-input"
+                      style={styles.formInput}
+                    />
+                  </div>
+
+                  <div style={styles.formInputWrapper}>
+                    <label style={styles.formLabel}>Roof and Power Bill Details</label>
+                    <textarea 
+                      placeholder="My monthly electricity bill is around Rs. 7,000, and my roof is concrete with approx 1,000 sq ft shadow-free space..." 
+                      rows={4}
+                      value={roofDetails}
+                      onChange={(e) => setRoofDetails(e.target.value)}
+                      className="form-textarea"
+                      style={styles.formTextarea}
+                    ></textarea>
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting} 
+                    className="btn btn-primary"
+                    style={{ width: '100%', padding: '1rem', fontSize: '1.05rem', borderRadius: 'var(--radius-sm)' }}
+                  >
+                    {isSubmitting ? 'Sending Request...' : 'Submit Inquiry'}
+                  </button>
+                </form>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+};
 
 export default App;
